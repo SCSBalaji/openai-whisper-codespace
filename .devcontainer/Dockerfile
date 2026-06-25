@@ -3,14 +3,18 @@ FROM mcr.microsoft.com/devcontainers/python:3.11
 # Update packages
 RUN apt-get update && apt-get upgrade -y
 
-# Install ffmpeg
-RUN apt-get install -y ffmpeg
-
-# Install rclone
-RUN apt-get install -y rclone
+# Install system packages
+RUN apt-get install -y \
+    ffmpeg \
+    rclone
 
 # Upgrade pip
-RUN pip install --upgrade pip
+RUN python -m pip install --upgrade pip
 
-# Install Whisper
-RUN pip install openai-whisper
+# Install Python packages
+RUN pip install \
+    openai-whisper \
+    faster-whisper \
+    yt-dlp \
+    ffmpeg-python \
+    tqdm

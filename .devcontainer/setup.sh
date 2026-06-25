@@ -1,20 +1,36 @@
 #!/bin/bash
+set -e
 
-echo "--------------------------------"
-echo "Whisper Codespace Ready"
-echo "--------------------------------"
+echo "========== Setting up Codespace =========="
 
-echo "FFmpeg Version:"
-ffmpeg -version | head -n 1
+# Restore rclone config if secret exists
+if [ -n "$RCLONE_CONFIG" ]; then
+    echo "Restoring rclone configuration..."
 
-echo ""
-echo "Rclone Version:"
-rclone version | head -n 2
+    mkdir -p ~/.config/rclone
 
-echo ""
-echo "Whisper Version:"
-python -c "import whisper; print('Whisper Installed Successfully')"
+    printf "%s" "$RCLONE_CONFIG" > ~/.config/rclone/rclone.conf
 
-echo ""
-echo "If rclone is not configured, run:"
-echo "rclone config"
+    chmod 600 ~/.config/rclone/rclone.conf
+
+    echo "✓ rclone config restored"
+else
+    echo "No RCLONE_CONFIG secret found."
+fi
+
+echo
+echo "Installed versions"
+
+echo "FFmpeg:"
+ffmpeg -version | head -1
+
+echo
+echo "Rclone:"
+rclone version | head -2
+
+echo
+echo "Whisper:"
+python -c "import whisper; print('Whisper installed successfully')"
+
+echo
+echo "Setup completed!"
