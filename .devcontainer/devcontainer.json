@@ -1,0 +1,20 @@
+{
+    "name": "Whisper Workspace",
+
+    "build": {
+        "dockerfile": "Dockerfile"
+    },
+
+    "postCreateCommand": "bash .devcontainer/setup.sh",
+
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "ms-python.python",
+                "ms-python.vscode-pylance",
+                "GitHub.copilot",
+                "GitHub.copilot-chat"
+            ]
+        }
+    }
+}
