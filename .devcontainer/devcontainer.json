@@ -7,10 +7,6 @@
 
     "postCreateCommand": "bash .devcontainer/setup.sh",
 
-    "remoteEnv": {
-        "RCLONE_CONFIG": "${localEnv:RCLONE_CONFIG}"
-    },
-
     "customizations": {
         "vscode": {
             "extensions": [

@@ -12,9 +12,4 @@ RUN apt-get install -y \
 RUN python -m pip install --upgrade pip
 
 # Install Python packages
-RUN pip install \
-    openai-whisper \
-    faster-whisper \
-    yt-dlp \
-    ffmpeg-python \
-    tqdm
+RUN pip install openai-whisper
