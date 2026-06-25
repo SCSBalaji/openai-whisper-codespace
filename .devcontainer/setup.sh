@@ -1,19 +1,16 @@
 #!/bin/bash
 set -e
 
-echo "========== Setting up Codespace =========="
+mkdir -p ~/.config/rclone
 
-# Restore rclone config if secret exists
-if [ -n "$RCLONE_CONFIG_CONTENT" ]; then
-    mkdir -p ~/.config/rclone
-
-    printf "%s" "$RCLONE_CONFIG_CONTENT" > ~/.config/rclone/rclone.conf
-
-    chmod 600 ~/.config/rclone/rclone.conf
-
-    echo "rclone config restored."
-else
-    echo "No rclone config secret found."
+if [ ! -f ~/.config/rclone/rclone.conf ]; then
+    if [ -n "$RCLONE_CONFIG_CONTENT" ]; then
+        printf "%s" "$RCLONE_CONFIG_CONTENT" > ~/.config/rclone/rclone.conf
+        chmod 600 ~/.config/rclone/rclone.conf
+        echo "✓ Restored rclone config"
+    else
+        echo "No rclone secret found."
+    fi
 fi
 
 echo

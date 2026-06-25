@@ -5,7 +5,7 @@
         "dockerfile": "Dockerfile"
     },
 
-    "postCreateCommand": "bash .devcontainer/setup.sh",
+    "postStartCommand": "bash .devcontainer/setup.sh",
 
     "customizations": {
         "vscode": {
